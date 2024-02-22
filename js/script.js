@@ -55,9 +55,9 @@ canvas.height = table.offsetHeight + marginLeft;
 canvas.style.width = table.offsetWidth + marginLeft + 'px';
 canvas.style.height = table.offsetHeight + marginLeft + 'px';
 current.style.left = cellWidth + marginLeft - current.offsetWidth / 2.3 + 'px';
-current.style.top = cellHeight * 10 + radius + 40 + 'px';
+current.style.top = cellHeight * (row.length+1) + radius + 40 + 'px';
 goal.style.left = cellWidth * 4.5 + marginLeft - goal.offsetWidth / 3 + 'px';
-goal.style.top = cellHeight * 10 + radius + 40 + 'px';
+goal.style.top = cellHeight * (row.length+1) + radius + 40 + 'px';
 for (var i = 0; i < row.length; i++) {
     for (var j = 0; j < col.length; j++) {
         x = j * cellWidth + marginLeft;
@@ -80,17 +80,17 @@ for (var i = 0; i < row.length; i++) {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'rgba(169,243,230,.2)';
-    ctx.fillRect(marginLeft + cellWidth, cellHeight, cellWidth * 3.5, cellHeight * 9);
+    ctx.fillRect(marginLeft + cellWidth, cellHeight, cellWidth * 3.5, cellHeight * row.length);
     ctx.setLineDash([6, 4]);
     ctx.beginPath();
     ctx.moveTo(marginLeft + cellWidth, cellHeight);
-    ctx.lineTo(marginLeft + cellWidth, cellHeight * 10);
+    ctx.lineTo(marginLeft + cellWidth, cellHeight * (row.length+1));
     ctx.strokeStyle = "#BBC3FF";
     ctx.stroke();
 
     ctx.beginPath();
     ctx.moveTo(cellWidth * 4.5 + marginLeft, cellHeight);
-    ctx.lineTo(cellWidth * 4.5 + marginLeft, cellHeight * 10);
+    ctx.lineTo(cellWidth * 4.5 + marginLeft, cellHeight * (row.length+1));
     ctx.strokeStyle = "#A9F3E6";
     ctx.stroke();
 
@@ -104,9 +104,9 @@ function draw() {
         ctx.lineTo(max.x, cellHeight);
         current.style.left = min.x - current.offsetWidth / 2 + 'px';
         if (min.x >= goal.offsetLeft) {
-            current.style.top = cellHeight * 10 + radius + 75 + 'px';
+            current.style.top = cellHeight * (row.length+1) + radius + 75 + 'px';
         } else {
-            current.style.top = cellHeight * 10 + radius + 40 + 'px';
+            current.style.top = cellHeight * (row.length+1) + radius + 40 + 'px';
         }
     } else {
         ctx.moveTo(marginLeft + cellWidth, lines[0].y1);
@@ -120,8 +120,8 @@ function draw() {
         }
     }
     if (max.x > 0) {
-        ctx.lineTo(min.x, cellHeight * 10);
-        ctx.lineTo(marginLeft + cellWidth, cellHeight * 10);
+        ctx.lineTo(min.x, cellHeight * (row.length+1));
+        ctx.lineTo(marginLeft + cellWidth, cellHeight * (row.length+1));
     }
     ctx.closePath();
     ctx.fill();
@@ -224,9 +224,9 @@ window.addEventListener("resize", function () {
     canvas.style.width = table.offsetWidth + marginLeft + 'px';
     canvas.style.height = table.offsetHeight + marginLeft + 'px';
     current.style.left = cellWidth + marginLeft - current.offsetWidth / 2 + 'px';
-    current.style.top = cellHeight * 10 + radius + 40 + 'px';
+    current.style.top = cellHeight * (row.length+1) + radius + 40 + 'px';
     goal.style.left = cellWidth * 4.5 + marginLeft - goal.offsetWidth / 2 + 'px';
-    goal.style.top = cellHeight * 10 + radius + 40 + 'px';
+    goal.style.top = cellHeight * (row.length+1) + radius + 40 + 'px';
 });
 
 // SAVE IMAGE AS PNG
